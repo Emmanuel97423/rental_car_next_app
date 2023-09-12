@@ -1,6 +1,11 @@
-import { ComponentHero, ComponentSearchBar,  ComponentCustomFilter} from "@/components";
 
-export default function Home() {
+import { ComponentHero, ComponentSearchBar,  ComponentCustomFilter, ComponentCarCard } from "@/components";
+import { fetchCars } from "@/utils";
+
+export default async function Home() {
+
+  const allCars = await fetchCars();
+  const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
   return (
     <main className="overflow-hidden">
       <ComponentHero/>
@@ -14,10 +19,22 @@ export default function Home() {
           <div className="home__filter-container">
             <ComponentCustomFilter title="carburant"/>
             <ComponentCustomFilter title="année"/>
-
-
           </div>
         </div>
+        {
+          !isDataEmpty ? (
+            <section className="home__cars--wrapper">
+             {allCars?.map((car,i)=>(
+              <ComponentCarCard key={i} car={car}/>
+             ))}
+            </section>
+          ) : (
+            <div className="home__error-container">
+              <h2 className="text-black text-xl font-bold">Oups, nous n'avons rien pour le moment...</h2>
+              <p>{allCars.message}</p>
+            </div>
+          )
+        }
       </div>
     </main>
   )

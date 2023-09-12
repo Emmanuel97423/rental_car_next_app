@@ -5,6 +5,10 @@ export { default as ComponentFooter } from "./ui/ComponentFooter";
 export { default as ComponentCustomFilter } from "./ui/ComponentCustomFilter";
 export { default as ComponentSearchBar } from "./ui/ComponentSearchBar";
 export { default as ComponentSearchManufacturer } from "./ui/ComponentSearchManufacturer";
+export { default as ComponentCarCard } from "./ui/ComponentCarCard";
+export { default as ComponentCarDetails } from "./ui/ComponentCarDetails";
+
+
 
 
 
